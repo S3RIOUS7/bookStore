@@ -1,0 +1,18 @@
+.input-container{
+  margin-top: 25px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.inputField {
+  height: 35px;
+  width: 357px;
+  border: none;
+  text-align: left;
+  font-size: 24px;
+  
+  &:focus {
+    outline: none;
+  }
+
+
+}
