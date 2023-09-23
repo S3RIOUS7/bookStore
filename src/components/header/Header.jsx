@@ -2,12 +2,11 @@ import { Fragment } from "react"
 import Input from "../input/Input"
 import PopUpMenu from "../popUpMenu/PopUpMenu"
 import './Header.scss'
+import { options1, options2 } from '../../utils/constants/constants.js'
 
 
 function Header(){
-  const options1 = ['all', 'art','biography' , 'computers', 'history','medical' , 'poetry'];
-  const options2 = ['relevance', 'newest'];
-
+  
 
   return(
     <Fragment>
@@ -18,8 +17,6 @@ function Header(){
           <div className="popDiscription">
             <h3>Categories</h3> <p><PopUpMenu options={options1}/></p>
             <h3>Sorting by</h3> <p><PopUpMenu options={options2}/></p>
-          
-          
           </div>
         </div>
       </div>
