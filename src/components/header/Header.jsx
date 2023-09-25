@@ -1,7 +1,7 @@
 import { Fragment } from "react"
 import Input from "../input/Input"
 import PopUpMenu from "../popUpMenu/PopUpMenu"
-import './Header.scss'
+import './header.scss'
 import { options1, options2 } from '../../utils/constants/constants.js'
 
 

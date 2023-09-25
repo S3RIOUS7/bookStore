@@ -8,10 +8,10 @@ function App() {
   
  
   return (
-   <Fragment>
+   <div className='app-main-container'>
      <Header/>
      <Main/>
-   </Fragment>
+   </div>
   );
 }
 
