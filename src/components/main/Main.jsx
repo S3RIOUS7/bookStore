@@ -1,53 +1,30 @@
-import axios from "axios";
-import { Fragment, useEffect, useState } from "react";
-import {BASE_URL} from '../../utils/constants/constants.js';
+import React, { Fragment, useState } from "react";
 import CardBook from "../cardbook/CardBook.jsx";
-import '../main/main.scss'
+import '../main/main.scss';
 
-const API_KEY = process.env.REACT_APP_API_KEY
- 
-function Main(){
+
+
+function Main({ books }) {
   
-  const [books, setBooks] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
-
-  useEffect(() => {
-    
-    const loadBooks = () => {
-      axios
-        .get(`${BASE_URL}?key=${API_KEY}&startIndex=${startIndex}&maxResults=10`)
-        .then((response) => {
-          setBooks((prevBooks) => [...prevBooks, ...(response.data.items || [])]);
-        })
-        .catch((error) => {
-          console.error("Книги не отображаются", error);
-        });
-    };
+  const [totalBooks, setTotalBooks] = useState(0);
 
   
-    loadBooks();
-  }, [startIndex]);
-
- 
   const loadMoreBooks = () => {
- 
-    setStartIndex((prevIndex) => prevIndex + 10);
-  };
+    setStartIndex((prevIndex) => prevIndex + 10);}
+  
 
-  return(
+  return (
     <Fragment>
-      
-        <h2>Books</h2>
-         <div className="main-container">
-
-          {books.map((book) => (
-            <CardBook key={book.id} book={book} />
-          ))}
-
-        </div>
-        <button onClick={loadMoreBooks}>Load More</button>
+      <h2>Books ({totalBooks})</h2>
+      <div className="main-container">
+        {books.map((book) => (
+          <CardBook key={book.id} book={book} />
+        ))}
+      </div>
+      <button onClick={loadMoreBooks}>Load More</button>
     </Fragment>
-  )
+  );
 }
 
-export default Main
+export default Main;
