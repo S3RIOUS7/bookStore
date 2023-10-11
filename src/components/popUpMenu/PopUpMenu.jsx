@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import '../popUpMenu/popupmenu.scss'
 
-const PopUpMenu = ({ options }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+const PopUpMenu = ({ options, selectedOption, setSelectedOption }) => {
   
-
+  const [isOpen, setIsOpen] = useState(false);
+ 
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -14,8 +13,10 @@ const PopUpMenu = ({ options }) => {
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setIsOpen(false);
+    // console.log(setSelectedOption)
   };
 
+  
   return (
     <div className="dropdown">
       <button onClick={toggleMenu} className="toggle-button">
@@ -23,8 +24,8 @@ const PopUpMenu = ({ options }) => {
       </button>
       {isOpen && (
         <ul className="menu">
-          {options.map((option, index) => (
-            <li key={index} onClick={() => handleOptionClick(option)}>
+          {options.map((option) => (
+            <li key={option} onClick={() => handleOptionClick(option)}>
               {option}
             </li>
           ))}

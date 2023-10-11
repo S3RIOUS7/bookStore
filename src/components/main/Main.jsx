@@ -1,28 +1,35 @@
-import React, { Fragment, useState } from "react";
+import {  useState } from "react";
+import React, { Fragment} from "react";
 import CardBook from "../cardbook/CardBook.jsx";
 import '../main/main.scss';
+import { fetchBySearchBook } from "../../api/fetchBySearchBook";
 
 
+function Main({ books, totalBooks, searchInput, setBooks}) {
 
-function Main({ books }) {
-  
   const [startIndex, setStartIndex] = useState(0);
-  const [totalBooks, setTotalBooks] = useState(0);
-
   
-  const loadMoreBooks = () => {
-    setStartIndex((prevIndex) => prevIndex + 10);}
-  
+  const loadMoreBooks = async () => {
+    const res = await fetchBySearchBook(searchInput, startIndex + 10);
+    setBooks((prevBooks) => [...prevBooks, ...res.items]);
+    setStartIndex((prevIndex) => prevIndex + 10);
+  };
+ console.log(books)
 
   return (
     <Fragment>
-      <h2>Books ({totalBooks})</h2>
+      
+      <h2>Books ({totalBooks}) </h2>
       <div className="main-container">
-        {books.map((book) => (
+        
+        {books?.map((book) => (
           <CardBook key={book.id} book={book} />
+          
         ))}
       </div>
-      <button onClick={loadMoreBooks}>Load More</button>
+      {books?.length < totalBooks && (
+        <button onClick={loadMoreBooks}>Load More</button>
+      )}
     </Fragment>
   );
 }
