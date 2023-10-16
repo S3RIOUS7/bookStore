@@ -1,21 +1,20 @@
-import {  useState } from "react";
+
 import Input from "../input/Input";
 import PopUpMenu from "../popUpMenu/PopUpMenu";
 import './header.scss';
 import { options1, options2 } from '../../utils/constants/constants.js';
 import { fetchBySearchBook } from "../../api/fetchBySearchBook";
 
-function Header({ setBooks, setTotalBooks, searchInput, setSearchInput }) {
-  const [selectedOrderBy, setSelectedOrderBy] = useState(options2[0]);
-  const [selectedCategory, setSelectedCategory] = useState(options1[0]);
+function Header({ setBooks, setTotalBooks, searchInput, setSearchInput, selectedCategory, selectedOrderBy, setSelectedCategory, setSelectedOrderBy }) {
+  
 
 
   const handleSearch = async () => {
-  
-  const res=await fetchBySearchBook(searchInput, 10, selectedOrderBy, selectedCategory);
+    
+  const res=await fetchBySearchBook( searchInput, 10, selectedOrderBy, selectedCategory);
   setBooks(res.items)
   setTotalBooks(res.totalItems);  
- 
+    
   };
  
   
@@ -30,7 +29,7 @@ function Header({ setBooks, setTotalBooks, searchInput, setSearchInput }) {
         type="text"
       />
         <div className="popDiscription">
-          <h3>Categories</h3> <PopUpMenu options={options1} 
+          <h3>Categories</h3> <PopUpMenu options={options1}
            selectedOption={selectedCategory}
            setSelectedOption={setSelectedCategory}
           />

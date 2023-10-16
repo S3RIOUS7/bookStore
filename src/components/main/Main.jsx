@@ -5,12 +5,12 @@ import '../main/main.scss';
 import { fetchBySearchBook } from "../../api/fetchBySearchBook";
 
 
-function Main({ books, totalBooks, searchInput, setBooks}) {
+function Main({ books, totalBooks, searchInput, setBooks, selectedCategory, selectedOrderBy }) {
 
   const [startIndex, setStartIndex] = useState(0);
   
   const loadMoreBooks = async () => {
-    const res = await fetchBySearchBook(searchInput, startIndex + 10);
+    const res = await fetchBySearchBook(searchInput, startIndex + 10, selectedOrderBy, selectedCategory);
     setBooks((prevBooks) => [...prevBooks, ...res.items]);
     setStartIndex((prevIndex) => prevIndex + 10);
   };

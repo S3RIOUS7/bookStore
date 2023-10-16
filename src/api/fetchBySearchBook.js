@@ -16,6 +16,7 @@ export const fetchBySearchBook = async (searchTerms, startIndex, selectedOrderBy
    } catch(error) {
     // console.error("Something went wrong", error);
     console.log('Error', error)
+    
     };
 };
 
