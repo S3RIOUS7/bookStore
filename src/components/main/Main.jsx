@@ -1,34 +1,36 @@
-import {  useState } from "react";
-import React, { Fragment} from "react";
-import CardBook from "../cardbook/CardBook.jsx";
-import '../main/main.scss';
+import React, { Fragment } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setBooks } from "../actions/appActions";
 import { fetchBySearchBook } from "../../api/fetchBySearchBook";
 
+function Main() {
+  const books = useSelector((state) => state.books);
+  const totalBooks = useSelector((state) => state.totalBooks);
+  const selectedCategory = useSelector((state) => state.selectedCategory);
+  const selectedOrderBy = useSelector((state) => state.selectedOrderBy);
 
-function Main({ books, totalBooks, searchInput, setBooks, selectedCategory, selectedOrderBy }) {
+  const dispatch = useDispatch();
 
-  const [startIndex, setStartIndex] = useState(0);
-  
-  const loadMoreBooks = async () => {
-    const res = await fetchBySearchBook(searchInput, startIndex + 10, selectedOrderBy, selectedCategory);
-    setBooks((prevBooks) => [...prevBooks, ...res.items]);
-    setStartIndex((prevIndex) => prevIndex + 10);
+  const loadBooks = async () => {
+    const res = await fetchBySearchBook(
+      searchInput,
+      books.length,
+      selectedOrderBy,
+      selectedCategory
+    );
+    dispatch(setBooks([...books, ...res.items])
   };
- console.log(books)
 
   return (
     <Fragment>
-      
-      <h2>Books ({totalBooks}) </h2>
+      <h2>Books ({totalBooks})</h2>
       <div className="main-container">
-        
-        {books?.map((book) => (
+        {books.map((book) => (
           <CardBook key={book.id} book={book} />
-          
         ))}
       </div>
-      {books?.length < totalBooks && (
-        <button onClick={loadMoreBooks}>Load More</button>
+      {books.length < totalBooks && (
+        <button onClick={loadBooks}>Load More</button>
       )}
     </Fragment>
   );
