@@ -1,7 +1,7 @@
 import { options1, options2 } from '../utils/constants/constants'
 const initialState = {
-  selectedOrderBy: options2[0],
-  selectedCategory: options1[0],
+  selectedOrderBy: options2[0].value,
+  selectedCategory: options1[0].value,
   books: [],
   totalBooks: 0,
   searchInput: "",

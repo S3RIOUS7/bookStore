@@ -10,7 +10,7 @@ export const fetchBySearchBook = async (searchTerms, startIndex, selectedOrderBy
     if (!response.data) {
       throw new Error('Something went wrong')
     }
-    console.log(response.data)
+    // console.log(response.data)
     return response.data
     
    } catch(error) {
