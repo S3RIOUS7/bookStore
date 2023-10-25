@@ -2,7 +2,8 @@
   position: relative;
   display: inline-block;
   text-align: center;
-  margin: 0px 15px;
+  margin: 5px 15px;
+  
 }
 
 .toggle-button {
@@ -42,6 +43,11 @@
   padding: 0;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute; 
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1; 
 }
 
 .menu li {

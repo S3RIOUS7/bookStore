@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectedOrderBy,
@@ -11,6 +11,7 @@ import Input from "../input/Input";
 import PopUpMenu from "../popUpMenu/PopUpMenu";
 import { options1, options2 } from '../../utils/constants/constants.js';
 import { fetchBySearchBook } from '../../api/fetchBySearchBook'
+import Loading from "../loading/Loading";
 import '../header/header.scss'
 
 function Header() {
@@ -18,12 +19,17 @@ function Header() {
   const selectedCategory = useSelector((state) => state.selectedCategory);
   const searchInput = useSelector((state) => state.searchInput);
 
+  const [loading, setLoading] = useState(false);
+
   const dispatch = useDispatch();
 
   const handleSearch = async () => {
+
+    setLoading(true);
     const res = await fetchBySearchBook(searchInput, 10, selectedOrderBy, selectedCategory);
     dispatch(setBooks(res.items));
     dispatch(setTotalBooks(res.totalItems));
+    setLoading(false);
   };
 
   return (
@@ -35,7 +41,13 @@ function Header() {
           value={searchInput}
           onChange={(e) => dispatch(setSearchInput(e.target.value))}
           type="text"
+          onButtonClick={handleSearch}
         />
+        {loading ? (
+          <Loading /> // Отображаем анимацию загрузки при активной загрузке
+        ) : (
+          <button onClick={handleSearch}>Search</button>
+        )}
         <div className="popDiscription">
           <h3>Categories</h3>
           <PopUpMenu
@@ -50,7 +62,6 @@ function Header() {
             setSelectedOption={(option) => dispatch(setSelectedOrderBy(option))}
           />
         </div>
-        <button onClick={handleSearch}>Search</button>
       </div>
     </div>
   );
