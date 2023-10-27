@@ -5,9 +5,6 @@ import Header from './components/header/Header';
 
 function App() {
   
- 
-  
-  
   return (
     <div className='app-main-container'>
       <Header />

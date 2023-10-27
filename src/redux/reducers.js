@@ -5,6 +5,7 @@ const initialState = {
   books: [],
   totalBooks: 0,
   searchInput: "",
+  loading: false, 
 };
 
 const appReducer = (state = initialState, action) => {
@@ -14,11 +15,13 @@ const appReducer = (state = initialState, action) => {
     case "SET_SELECTED_CATEGORY":
       return { ...state, selectedCategory: action.payload };
     case "SET_BOOKS":
-      return { ...state, books: action.payload };
+      return { ...state, books: action.payload, loading: false };
     case "SET_TOTAL_BOOKS":
       return { ...state, totalBooks: action.payload };
     case "SET_SEARCH_INPUT":
       return { ...state, searchInput: action.payload };
+    case "SET_LOADING":
+      return { ...state, loading: action.payload };
     default:
       return state;
   }

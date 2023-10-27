@@ -3,15 +3,13 @@ import '../loading/loading.scss'
 
 
 const Loading = () => {
-  return (
-    <div className="loading-spinner">
-      <div className="loading-spinner-content">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-       
-      </div>
-    </div>
+  return (<div className="main-loader">
+    
+    <div className="loader">Loading...
+    <div className="loader-circle"></div>
+    
+  </div>
+  </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setBooks } from "../../redux/actions";
+import { setBooks, fetchBooks } from "../../redux/actions";
 import { fetchBySearchBook } from "../../api/fetchBySearchBook";
 import  CardBook  from '../cardbook/CardBook'
 import '../main/main.scss'
@@ -12,14 +12,26 @@ function Main() {
   const searchInput = useSelector((state) => state.searchInput);
   const dispatch = useDispatch();
 
+  // const loadBooks = async () => {
+  //   const res = await fetchBySearchBook(
+  //     searchInput,
+  //     books.length,
+  //     selectedOrderBy,
+  //     selectedCategory
+  //   );
+  //   dispatch(setBooks([...books, ...res.items]))
+  // }
   const loadBooks = async () => {
-    const res = await fetchBySearchBook(
-      searchInput,
-      books.length,
-      selectedOrderBy,
-      selectedCategory
+    const offset = books.length;
+    dispatch(fetchBooks(searchInput, 10, selectedOrderBy, selectedCategory, offset));
+  }
+  
+  if (books === undefined) {
+    return (
+      <div className="error">
+        Sorry, books are not found
+      </div>
     );
-    dispatch(setBooks([...books, ...res.items]))
   }
 
   return (

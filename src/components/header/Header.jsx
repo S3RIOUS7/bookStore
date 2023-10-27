@@ -6,30 +6,26 @@ import {
   setBooks,
   setTotalBooks,
   setSearchInput,
+  fetchBooks,
 } from "../../redux/actions";
 import Input from "../input/Input";
 import PopUpMenu from "../popUpMenu/PopUpMenu";
 import { options1, options2 } from '../../utils/constants/constants.js';
-import { fetchBySearchBook } from '../../api/fetchBySearchBook'
+
 import Loading from "../loading/Loading";
 import '../header/header.scss'
 
 function Header() {
   const selectedOrderBy = useSelector((state) => state.selectedOrderBy);
-  const selectedCategory = useSelector((state) => state.selectedCategory);
+  const selectedCategory = useSelector((state) => state.selectedCategory);// useSelector получаю значение из редакс-состояние
   const searchInput = useSelector((state) => state.searchInput);
 
-  const [loading, setLoading] = useState(false);
+  const loading = useSelector((state) => state.loading);
 
   const dispatch = useDispatch();
 
-  const handleSearch = async () => {
-
-    setLoading(true);
-    const res = await fetchBySearchBook(searchInput, 10, selectedOrderBy, selectedCategory);
-    dispatch(setBooks(res.items));
-    dispatch(setTotalBooks(res.totalItems));
-    setLoading(false);
+  const handleSearch = () => {
+    dispatch(fetchBooks(searchInput, 10, selectedOrderBy, selectedCategory));
   };
 
   return (

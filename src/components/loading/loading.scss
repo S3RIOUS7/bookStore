@@ -1,35 +1,34 @@
-.loading-spinner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.main-loader{
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  background: rgba(255, 255, 255, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 3; 
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // параметр занимающий 100% видимости экрана расшифровка viewport height
+  
 }
 
-.loading-spinner-content {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.spinner-border {
-  width: 3rem;
-  height: 3rem;
-  border-width: 4px;
-  border-top-color: #007bff;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
+.loader-circle {
+  width: 25px;
+  height: 25px;
+  border: 5px solid #3d776a;
+  border-top: 4px solid transparent;
+  border-radius: 50%;
   animation: spin 1s linear infinite;
+  box-shadow: 0 0 10px rgba(52, 152, 219, 0.5); 
+  
 }
 
-// @keyframes spin {
-//   0% { transform: rotate(0deg); }
-//   100% { transform: rotate(360deg); }
-// }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
