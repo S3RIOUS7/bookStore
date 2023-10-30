@@ -1,30 +1,13 @@
 import React, { Fragment } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setBooks, fetchBooks } from "../../redux/actions";
-import { fetchBySearchBook } from "../../api/fetchBySearchBook";
+import { useSelector } from "react-redux";
+import LoadMore from "../loadMore/LoadMore";
 import  CardBook  from '../cardbook/CardBook'
 import '../main/main.scss'
-function Main() {
-  const books = useSelector((state) => state.books);
-  const totalBooks = useSelector((state) => state.totalBooks);
-  const selectedCategory = useSelector((state) => state.selectedCategory);
-  const selectedOrderBy = useSelector((state) => state.selectedOrderBy);
-  const searchInput = useSelector((state) => state.searchInput);
-  const dispatch = useDispatch();
 
-  // const loadBooks = async () => {
-  //   const res = await fetchBySearchBook(
-  //     searchInput,
-  //     books.length,
-  //     selectedOrderBy,
-  //     selectedCategory
-  //   );
-  //   dispatch(setBooks([...books, ...res.items]))
-  // }
-  const loadBooks = async () => {
-    const offset = books.length;
-    dispatch(fetchBooks(searchInput, 10, selectedOrderBy, selectedCategory, offset));
-  }
+function Main() {
+  const totalBooks = useSelector((state) => state.totalBooks);
+  const books = useSelector((state) => state.books);
+ 
   
   if (books === undefined) {
     return (
@@ -44,7 +27,7 @@ function Main() {
         ))}
       </div>
       {books.length < totalBooks && (
-        <button onClick={loadBooks}>Load More</button>
+       <LoadMore/>
       )}
     </Fragment>
   );

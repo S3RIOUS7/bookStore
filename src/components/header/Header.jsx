@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setSelectedOrderBy,
   setSelectedCategory,
-  setBooks,
-  setTotalBooks,
   setSearchInput,
-  fetchBooks,
 } from "../../redux/actions";
+import{fetchBooks} from '../../redux/asyncActions'
 import Input from "../input/Input";
 import PopUpMenu from "../popUpMenu/PopUpMenu";
 import { options1, options2 } from '../../utils/constants/constants.js';
