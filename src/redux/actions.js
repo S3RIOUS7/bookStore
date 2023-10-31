@@ -24,3 +24,7 @@ export const setSearchInput = (searchInput) => {
 export const setLoading = (loading) => {
   return { type: "SET_LOADING", payload: loading };
 };
+
+export const appendBooks = (books) => {
+  return { type: "APPEND_BOOKS", payload: books };
+};

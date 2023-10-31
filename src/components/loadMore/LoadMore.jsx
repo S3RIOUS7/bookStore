@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBooks } from '../../redux/asyncActions'
+import { fetchNextPage  } from '../../redux/asyncActions'
+
 import './loadMore.scss'
 
 function LoadMore () {
@@ -9,13 +10,12 @@ function LoadMore () {
   const selectedOrderBy = useSelector((state) => state.selectedOrderBy);
   const searchInput = useSelector((state) => state.searchInput);
   const dispatch = useDispatch();
+ const offset = books.length;
 
-  const loadMore = () => {
-    const offset = books.length;
-    const limit = 10
-    dispatch(fetchBooks(searchInput, limit, selectedOrderBy, selectedCategory, offset));
-  }
-  
+ const loadMore = () => {
+  const limit = 10;
+  dispatch(fetchNextPage(searchInput, limit, selectedOrderBy, selectedCategory, offset));
+};
   return(
     <Fragment>
        <button className="loadMore" onClick={loadMore}>Load More</button>

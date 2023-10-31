@@ -2,6 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants/constants";
 import {
   setLoading,
+  appendBooks,
   setBooks,
   setTotalBooks,
 } from './actions.js';
@@ -31,7 +32,7 @@ export const fetchBooks = (searchInput, limit, orderBy, category, offset) => {
       dispatch(setLoading(true)); // Установить состояние загрузки в true
       
       const res = await fetchBySearchBook(searchInput, limit, orderBy, category, offset);
-      console.log(res.items)
+      dispatch(appendBooks(res.items));
       dispatch(setBooks(res.items));
       dispatch(setTotalBooks(res.totalItems));
       dispatch(setLoading(false)); // Установить состояние загрузки в false
@@ -41,4 +42,18 @@ export const fetchBooks = (searchInput, limit, orderBy, category, offset) => {
     }
   };
   
+};
+export const fetchNextPage = (searchInput, limit, orderBy, category, offset) => {
+  return async (dispatch) => {
+    try {
+      dispatch(setLoading(true)); // Установить состояние загрузки в true
+      
+      const res = await fetchBySearchBook(searchInput, limit, orderBy, category, offset);
+      dispatch(appendBooks(res.items)); // Добавьте новые книги к существующему списку
+      dispatch(setLoading(false)); // Установить состояние загрузки в false
+    } catch (error) {
+      // Обработка ошибок, если необходимо
+      dispatch(setLoading(false)); // Установить состояние загрузки в false в случае ошибки
+    }
+  };
 };
