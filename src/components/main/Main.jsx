@@ -1,14 +1,21 @@
 import React, { Fragment } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import LoadMore from "../loadMore/LoadMore";
 import  CardBook  from '../cardbook/CardBook'
 import '../main/main.scss'
+import { Link } from "react-router-dom";
+import {setCurrentPage} from '../../redux/actions'
 
 function Main() {
   const totalBooks = useSelector((state) => state.totalBooks);
   const books = useSelector((state) => state.books);
- 
-  
+  const currentPage = useSelector((state) => state.currentPage);
+  const dispatch = useDispatch();
+
+  const cardBookClick = () => {
+    dispatch(setCurrentPage(currentPage));
+
+  }
   if (books === undefined) {
     return (
       <div className="error">
@@ -19,13 +26,14 @@ function Main() {
 
   return (
     <Fragment>
-
-      <h2>Books ({totalBooks})</h2>
+      <div className="totalBooks"><h2>Books ({totalBooks})</h2></div>
       <div className="main-container">
         {books.map((book) => (
-          <CardBook key={book.id} book={book} />
+          <Link to={`/bookPage/${book.id}`} key={book.id} className="link-no-underline">
+          <CardBook book={book} onClick={() => cardBookClick(book)} />
+        </Link>
         ))}
-      </div>
+        </div>
       {books.length < totalBooks && (
        <LoadMore/>
       )}

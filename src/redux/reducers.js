@@ -6,14 +6,15 @@ const initialState = {
   totalBooks: 0,
   searchInput: "",
   loading: false, 
-  
+  currentPage: 1,
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
     case "APPEND_BOOKS":
       return { ...state, books: [...state.books, ...action.payload], loading: false };
-    
+      case "SET_CURRENT_PAGE":
+        return { ...state, currentPage: action.payload };
     case "SET_SELECTED_ORDER_BY":
       return { ...state, selectedOrderBy: action.payload };
     case "SET_SELECTED_CATEGORY":

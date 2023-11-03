@@ -28,3 +28,7 @@ export const setLoading = (loading) => {
 export const appendBooks = (books) => {
   return { type: "APPEND_BOOKS", payload: books };
 };
+
+export const setCurrentPage = (page) => {
+  return { type: "SET_CURRENT_PAGE", payload: page };
+};

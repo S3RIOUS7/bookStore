@@ -1,15 +1,17 @@
 
-
-import Main from './components/main/Main';
-import Header from './components/header/Header';
-
+import React from "react";
+import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import MainPage from './pages/mainPage/MainPage';
+import BookPage from "./pages/bookPage/BookPage";
 function App() {
   
   return (
-    <div className='app-main-container'>
-      <Header />
-      <Main />
-    </div>
+    <Router>
+       <Routes>
+      <Route path="/"  element={<MainPage />} />
+      <Route path="/bookPage/:bookId" element={<BookPage />} />
+    </Routes>
+    </Router>
   );
 }
   
