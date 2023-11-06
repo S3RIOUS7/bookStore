@@ -18,4 +18,14 @@
 .link-no-underline {
   text-decoration: none;
   color: inherit; 
+  background-color: #DDDDDD;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+width: 260px;
+//   &:hover {
+//     width: 120%;
+    
+// }
 }

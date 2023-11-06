@@ -1,3 +1,8 @@
 .card-book-container{
-  margin: 20px 30px
+  width: 100%;
+}
+.card-book-container img{
+  width: 100px;
+  height: auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
 }

@@ -1,0 +1,42 @@
+.bookPage-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.imgContainer{
+  min-height: 500px;
+  min-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #DDDDDD;
+}
+.imgBookPage{
+  min-height: 400px;
+ 
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5); 
+}
+.bookPageInfo{
+  margin: 20px 20px;
+  width: 50%;
+}
+.bookPageInfo h1 {
+margin: 0;
+font-size: 36px;
+}
+.bookPageInfo p{
+  font-size: 20px;
+}
+
+.bookPageButton{
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  width: 150px;
+  border: none;
+  background-color: #F6F4FB;
+  font-size: 15px;
+  border-radius: 8px;
+  height: fit-content;
+  color: #AA21FF;
+}
