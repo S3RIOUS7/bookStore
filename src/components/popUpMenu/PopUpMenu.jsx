@@ -17,7 +17,7 @@ const PopUpMenu = ({ options, selectedOption, setSelectedOption }) => {
     
   };
 
-  console.log(selectedOption);
+ 
 
   return (
     <div className="dropdown">

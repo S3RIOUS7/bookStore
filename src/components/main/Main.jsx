@@ -4,7 +4,7 @@ import LoadMore from "../loadMore/LoadMore";
 import  CardBook  from '../cardbook/CardBook'
 import '../main/main.scss'
 import { Link } from "react-router-dom";
-import {setCurrentPage} from '../../redux/actions'
+
 
 function Main() {
   const totalBooks = useSelector((state) => state.totalBooks);
@@ -12,10 +12,7 @@ function Main() {
   const currentPage = useSelector((state) => state.currentPage);
   const dispatch = useDispatch();
 
-  const cardBookClick = () => {
-    dispatch(setCurrentPage(currentPage));
 
-  }
   if (books === undefined) {
     return (
       <div className="error">
@@ -30,8 +27,8 @@ function Main() {
       <div className="main-container">
         {books.map((book) => (
           <Link to={`/bookPage/${book.id}`} key={book.id} className="link-no-underline">
-          <CardBook book={book} onClick={() => cardBookClick(book)} />
-        </Link>
+          <CardBook book={book}  />
+           </Link>
         ))}
         </div>
       {books.length < totalBooks && (

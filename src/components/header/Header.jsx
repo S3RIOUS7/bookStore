@@ -25,6 +25,16 @@ function Header() {
   const handleSearch = () => {
     dispatch(fetchBooks(searchInput, 10, selectedOrderBy, selectedCategory));
   };
+  const setValueInput = (str) => {
+    dispatch(setSearchInput(str))
+  }
+  const setCategory = (option) => {
+    dispatch(setSelectedCategory(option))
+  }
+
+  const setOrderBy = (option) => {
+    dispatch(setSelectedOrderBy(option))
+  }
 
   return (
     <div className="header">
@@ -33,7 +43,7 @@ function Header() {
         <Input
           label="Search Books"
           value={searchInput}
-          onChange={(e) => dispatch(setSearchInput(e.target.value))}
+          onChange={setValueInput}
           type="text"
           onButtonClick={handleSearch}
         />
@@ -47,13 +57,13 @@ function Header() {
           <PopUpMenu
             options={options1}
             selectedOption={selectedCategory}
-            setSelectedOption={(option) => dispatch(setSelectedCategory(option))}
+            setSelectedOption={setCategory}
           />
           <h3>Sorting by</h3>
           <PopUpMenu
             options={options2}
             selectedOption={selectedOrderBy}
-            setSelectedOption={(option) => dispatch(setSelectedOrderBy(option))}
+            setSelectedOption={setOrderBy}
           />
         </div>
       </div>

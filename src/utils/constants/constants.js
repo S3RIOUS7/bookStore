@@ -9,3 +9,6 @@ export const API_KEY = 'AIzaSyBnmA22ky67VAUr5y0j6fqm-fCrUJw9-kQ'
 
 export const BASE_URL = 'https://www.googleapis.com/books/v1/volumes'
 
+export const LIMIT = 30
+
+export const LIMITLOAD = 10

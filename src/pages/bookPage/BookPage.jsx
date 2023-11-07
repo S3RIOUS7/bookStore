@@ -1,4 +1,4 @@
-import Header from "../../components/header/Header";
+
 import { Fragment } from "react";
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -15,7 +15,7 @@ function BookPage () {
 
   return(
     <Fragment>
-      <Header />
+    
       <div className="bookPage-container">
       <div className="imgContainer"><img src={selectedBook?.volumeInfo?.imageLinks?.thumbnail} className="imgBookPage" alt="Book Cover" /></div>
       <div className="bookPageInfo">

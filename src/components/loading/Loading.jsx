@@ -5,7 +5,7 @@ import '../loading/loading.scss'
 const Loading = () => {
   return (<div className="main-loader">
     
-    <div className="loader">Loading...
+    <div className="loader">
     <div className="loader-circle"></div>
     
   </div>
