@@ -25,8 +25,8 @@ function Main() {
     <Fragment>
       <div className="totalBooks"><h2>Books ({totalBooks})</h2></div>
       <div className="main-container">
-        {books.map((book) => (
-          <Link to={`/bookPage/${book.id}`} key={book.id} className="link-no-underline">
+        {books.map((book, index) => (
+          <Link to={`/bookPage/${book.id}`} key={index} className="link-no-underline">
           <CardBook book={book}  />
            </Link>
         ))}

@@ -1,12 +1,11 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+
 import '../cardbook/cardBook.scss'
 
 
 function CardBook ({ book }){
 
-  const {id} = useParams();
-  console.log(id)
+  
   return(
     <div className="card-book-container">
         <img src={book?.volumeInfo?.imageLinks?.thumbnail} alt="Book Cover" />

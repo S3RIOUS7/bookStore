@@ -23,7 +23,9 @@ function Header() {
   const dispatch = useDispatch();
 
   const handleSearch = () => {
+    if (searchInput.trim() !== '' || selectedCategory){
     dispatch(fetchBooks(searchInput, 10, selectedOrderBy, selectedCategory));
+  }
   };
   const setValueInput = (str) => {
     dispatch(setSearchInput(str))
