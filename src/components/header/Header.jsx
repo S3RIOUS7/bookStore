@@ -4,6 +4,7 @@ import {
   setSelectedOrderBy,
   setSelectedCategory,
   setSearchInput,
+  setSearchButtonClicked,
 } from "../../redux/actions";
 import{fetchBooks} from '../../redux/asyncActions'
 import Input from "../input/Input";
@@ -17,12 +18,14 @@ function Header() {
   const selectedOrderBy = useSelector((state) => state.selectedOrderBy);
   const selectedCategory = useSelector((state) => state.selectedCategory);// useSelector получаю значение из редакс-состояние
   const searchInput = useSelector((state) => state.searchInput);
-
+  const searchButtonClicked = useSelector((state) => state.searchButtonClicked);
+  const dispatch = useDispatch();
   const loading = useSelector((state) => state.loading);
 
-  const dispatch = useDispatch();
+ 
 
   const handleSearch = () => {
+    dispatch(setSearchButtonClicked(true));
     if (searchInput.trim() !== '' || selectedCategory){
     dispatch(fetchBooks(searchInput, 10, selectedOrderBy, selectedCategory));
   }
@@ -51,9 +54,7 @@ function Header() {
         />
         {loading ? (
           <Loading /> // Отображаем анимацию загрузки при активной загрузке
-        ) : (
-          <button onClick={handleSearch}>Search</button>
-        )}
+        ) : null}
         <div className="popDiscription">
           <h3>Categories</h3>
           <PopUpMenu

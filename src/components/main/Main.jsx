@@ -9,33 +9,40 @@ import { Link } from "react-router-dom";
 function Main() {
   const totalBooks = useSelector((state) => state.totalBooks);
   const books = useSelector((state) => state.books);
-  const currentPage = useSelector((state) => state.currentPage);
-  const dispatch = useDispatch();
+
+  const searchInput = useSelector((state) => state.searchInput);
+  const searchButtonClicked = useSelector((state) => state.searchButtonClicked);
+  const loading = useSelector((state) => state.loading);
 
 
-  if (books === undefined) {
+  if (searchButtonClicked && loading) {
+    return null;
+  }
+  
+  if (searchButtonClicked && books.length === 0 && totalBooks === 0 && searchInput.trim()) {
     return (
       <div className="error">
-        Sorry, books are not found
+        Sorry, no books found for "{searchInput}"
       </div>
     );
   }
 
   return (
     <Fragment>
-      <div className="totalBooks"><h2>Books ({totalBooks})</h2></div>
+      <div className="totalBooks">
+        <h2>Books ({totalBooks})</h2>
+      </div>
       <div className="main-container">
         {books.map((book, index) => (
           <Link to={`/bookPage/${book.id}`} key={index} className="link-no-underline">
-          <CardBook book={book}  />
-           </Link>
+            <CardBook book={book}  />
+          </Link>
         ))}
-        </div>
-      {books.length < totalBooks && (
-       <LoadMore/>
-      )}
+      </div>
+      {books.length < totalBooks && <LoadMore />}
     </Fragment>
   );
 }
+
 
 export default Main;

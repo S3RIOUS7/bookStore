@@ -7,10 +7,13 @@ const initialState = {
   searchInput: "",
   loading: false, 
   currentPage: 1,
+  error: null,
 };
 
 const appReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_SEARCH_BUTTON_CLICKED":
+      return { ...state, searchButtonClicked: action.payload };
     case "APPEND_BOOKS":
       return { ...state, books: [...state.books, ...action.payload], loading: false };
       case "SET_CURRENT_PAGE":

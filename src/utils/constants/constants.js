@@ -11,4 +11,3 @@ export const BASE_URL = 'https://www.googleapis.com/books/v1/volumes'
 
 export const LIMIT = 30
 
-export const LIMITLOAD = 10

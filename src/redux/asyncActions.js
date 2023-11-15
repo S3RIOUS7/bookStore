@@ -47,6 +47,7 @@ export const fetchBooks = (searchInput, orderBy, category, offset) => {
 };
 
 
+
 export const fetchNextPage = (searchInput, orderBy, category, offset) => {
   return async (dispatch) => {
     try {
@@ -62,3 +63,4 @@ export const fetchNextPage = (searchInput, orderBy, category, offset) => {
     }
   };
 };
+

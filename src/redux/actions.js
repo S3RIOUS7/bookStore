@@ -33,3 +33,6 @@ export const setCurrentPage = (page) => {
   return { type: "SET_CURRENT_PAGE", payload: page };
 };
 
+export const setSearchButtonClicked = (clicked) => {
+  return { type: "SET_SEARCH_BUTTON_CLICKED", payload: clicked };
+};
